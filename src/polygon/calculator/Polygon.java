@@ -1,8 +1,6 @@
 package polygon.calculator;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class Polygon {
@@ -16,10 +14,11 @@ public class Polygon {
         this.calcArea = calcArea;
     }
 
+    static List<Polygon> polygons = new ArrayList<>();
     static Map<Integer, Polygon> polygonOptions = new HashMap<>();
 
-    public static void loadOptions(){
-        polygonOptions.put(1,
+    public static void createPolygons(){
+        polygons.add(
                 new Polygon(
                         "Quadrado",
                         () -> {
@@ -28,7 +27,7 @@ public class Polygon {
                 )
         );
 
-        polygonOptions.put(2,
+        polygons.add(
                 new Polygon(
                         "Triângulo",
                         () -> {
@@ -37,7 +36,7 @@ public class Polygon {
                 )
         );
 
-        polygonOptions.put(3,
+        polygons.add(
                 new Polygon(
                         "Trapézio",
                         () -> {
@@ -46,7 +45,7 @@ public class Polygon {
                 )
         );
 
-        polygonOptions.put(4,
+        polygons.add(
                 new Polygon(
                         "Losango",
                         () -> {
@@ -54,16 +53,32 @@ public class Polygon {
                         }
                 )
         );
+
+        /*polygons.add(
+                new Polygon(
+                        "Triângulo Equilátero",
+                        () -> {
+                            return (Math.pow(getMeasure("Lado"), 2) * Math.sqrt(3) / 54);
+                        }
+                )
+        );*/
+    }
+
+    public static void loadOptions(){
+        createPolygons();
+        for (int i = 0; i < 9 && i < polygons.size(); i++){
+            polygonOptions.put(i+1, polygons.get(i));
+        }
     }
 
     public static void printOptions(){
         polygonOptions.forEach(
-                ((integer, polygon) -> System.out.printf("%d. %s\n", integer, polygon.name))
+                ((integer, polygon) -> System.out.printf("%4d. %s\n", integer, polygon.name))
         );
     }
 
     static double getMeasure(String measureName){
-        System.out.printf("%s: ", measureName);
+        System.out.printf("\t%s: ", measureName);
         return scanner.nextDouble();
     }
 
