@@ -3,12 +3,13 @@ package polygon.calculator;
 import java.util.*;
 import java.util.function.Supplier;
 
+// Classe com métodos estáticos, para guardar polígonos e relacionados
 public class Polygon {
     static Scanner scanner = new Scanner(System.in);
-
     String name;
     Supplier<Double> calcArea;
 
+    // construtor do polígono, recebe nome e função lambda (Supplier) com o cálculo da área
     Polygon(String name, Supplier<Double> calcArea){
         this.name = name;
         this.calcArea = calcArea;
@@ -17,6 +18,7 @@ public class Polygon {
     static List<Polygon> polygons = new ArrayList<>();
     static Map<Integer, Polygon> polygonOptions = new HashMap<>();
 
+    // Cria todos os polígonos e os armazena numa lista de polígonos
     public static void createPolygons(){
         polygons.add(
                 new Polygon(
@@ -53,17 +55,9 @@ public class Polygon {
                         }
                 )
         );
-
-        /*polygons.add(
-                new Polygon(
-                        "Triângulo Equilátero",
-                        () -> {
-                            return (Math.pow(getMeasure("Lado"), 2) * Math.sqrt(3) / 54);
-                        }
-                )
-        );*/
     }
 
+    // Carrega a lista de polígonos para o mapa de opções
     public static void loadOptions(){
         createPolygons();
         for (int i = 0; i < 9 && i < polygons.size(); i++){
@@ -71,12 +65,14 @@ public class Polygon {
         }
     }
 
+    // Imprime cada polígono e seu respectivo índice, do mapa de opções
     public static void printOptions(){
         polygonOptions.forEach(
                 ((integer, polygon) -> System.out.printf("%4d. %s\n", integer, polygon.name))
         );
     }
 
+    // Solicita entrada do usuário para a medida do polígono passada como parâmetro
     static double getMeasure(String measureName){
         System.out.printf("\t%s: ", measureName);
         return scanner.nextDouble();
