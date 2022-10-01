@@ -37,10 +37,6 @@ public class ConsoleManager {
         }
     }
 
-    public static void printExitMessage(){
-        System.out.println(TEXT_RED + "\n Programa encerrado!" + TEXT_RESET);
-    }
-
     // Exibe a tela de cálculo, chama o método que solicita a entrada de cada medida necessária
     // e, por fim, imprime o resultado do cálculo
     public static void printPolygonCalculation(Polygon polygon){
@@ -53,12 +49,9 @@ public class ConsoleManager {
         System.out.print(TEXT_RESET);
     }
 
-    public static void printInvalidOptionMessage(){
-        System.out.println(TEXT_RED +"Opção inválida! Por favor, digite uma opção correta!" + TEXT_RESET);
-    }
-
-    public static void printInvalidValueMessage(){
-        System.out.println(TEXT_RED + "\tDigite um número!" + TEXT_RESET);
+    // Exibe uma mensagem com o texto em vermelho
+    public static void printErrorMessage(String errorMessage){
+        System.out.println(TEXT_RED + errorMessage + TEXT_RESET);
     }
 
 }

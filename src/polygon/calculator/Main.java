@@ -13,7 +13,7 @@ public class Main {
             int choice = ConsoleManager.getChoice();
 
             if (choice == 9){
-                ConsoleManager.printExitMessage();
+                ConsoleManager.printErrorMessage("\n Programa encerrado!");
                 break;
             }
             else if (Polygon.polygonOptions.get(choice) != null){
@@ -21,7 +21,7 @@ public class Main {
                 ConsoleManager.printPolygonCalculation(polygon);
             }
             else {
-                ConsoleManager.printInvalidOptionMessage();
+                ConsoleManager.printErrorMessage("Opção inválida! Por favor, digite uma opção correta!");
             }
 
         } while (true);

@@ -42,7 +42,17 @@ public class Polygon {
                 new Polygon(
                         "Trapézio",
                         () -> {
-                            return (getMeasure("Base maior") + getMeasure("Base menor")) * getMeasure("Altura") / 2;
+                            double largerBase = getMeasure("Base maior");
+
+                            do{
+                                double smallerBase = getMeasure("Base menor");
+
+                                if(smallerBase < largerBase) {
+                                    return (smallerBase + smallerBase) * getMeasure("Altura") / 2;
+                                } else {
+                                    ConsoleManager.printErrorMessage("\tBase menor deve ser menor que Base maior!");
+                                }
+                            } while (true);
                         }
                 )
         );
@@ -51,7 +61,17 @@ public class Polygon {
                 new Polygon(
                         "Losango",
                         () -> {
-                            return (getMeasure("Diagonal maior") * getMeasure("Diagonal menor") / 2);
+                            double largerDiagonal = getMeasure("Diagonal maior");
+
+                            do{
+                                double smallerDiagonal = getMeasure("Diagonal menor");
+
+                                if(smallerDiagonal < largerDiagonal) {
+                                    return largerDiagonal * smallerDiagonal / 2;
+                                } else {
+                                    ConsoleManager.printErrorMessage("\tDiagonal menor deve ser menor que Diagonal maior!");
+                                }
+                            } while (true);
                         }
                 )
         );
@@ -80,7 +100,7 @@ public class Polygon {
                 return scanner.nextDouble();
             } catch (InputMismatchException e){
                 scanner.nextLine(); // Joga fora a tecla <enter> restante do nextDouble()
-                ConsoleManager.printInvalidValueMessage();
+                ConsoleManager.printErrorMessage("\tDigite um número!");
             }
         } while (true);
     }
