@@ -57,4 +57,8 @@ public class ConsoleManager {
         System.out.println(TEXT_RED +"Opção inválida! Por favor, digite uma opção correta!" + TEXT_RESET);
     }
 
+    public static void printInvalidValueMessage(){
+        System.out.println(TEXT_RED + "\tDigite um número!" + TEXT_RESET);
+    }
+
 }

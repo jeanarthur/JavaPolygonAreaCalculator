@@ -74,8 +74,15 @@ public class Polygon {
 
     // Solicita entrada do usuário para a medida do polígono passada como parâmetro
     static double getMeasure(String measureName){
-        System.out.printf("\t%s: ", measureName);
-        return scanner.nextDouble();
+        do{
+            try{
+                System.out.printf("\t%s: ", measureName);
+                return scanner.nextDouble();
+            } catch (InputMismatchException e){
+                scanner.nextLine(); // Joga fora a tecla <enter> restante do nextDouble()
+                ConsoleManager.printInvalidValueMessage();
+            }
+        } while (true);
     }
 
 }
